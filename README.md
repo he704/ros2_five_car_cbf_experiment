@@ -8,22 +8,37 @@
 - `simple_controller`：五车控制 → `five_car_cbf_standard.py`
 
 ## 运行
+
 注意：各小车以及中心控制电脑需要连接在同一wifi下
+
 各小车位姿对应话题为/aruco_pose_0`至`/aruco_pose_4
+
 各小车速度指令对应话题为`/cmd_vel_1`至`/cmd_vel_5`
+
 1、修改各小车上订阅的速度话题以及节点名称，如果使用同款亚博智能小车，小车1可按下列操作进行：
    在小车的树莓派上
+   
    1、打开终端
+   
    2、中断大程序：sh /home/pi/project_demo/raspbot/killprocess.sh
+   
    3 、进入容器./docker_ros2.sh
+   
    4 、修改驱动代码vim /root/yahboomcar_ws/src/yahboomcar_bringup/launch/bringup.launch.py
+   
    5、修改节点名称和订阅的速度话题名称name=’driver_node_1’
                                    remappings=[("/cmd_vel","/cmd_vel_1")]
+   
    6、保存：依次输入“： esc wq”
+   
    7、回到终端cd /root/yahboomcar_ws
+   
    8、编译colcon build
+   
    9、启动底盘ros2 launch yahboomcar_bringup bringup.launch.py
+   
    依次对五太小车进行该操作即可
+
 在中控电脑上：
 
 2、先运行aruco码检测节点ros2 run aruco_detect aruco_detect_many_standard，
