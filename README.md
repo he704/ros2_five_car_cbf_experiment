@@ -25,13 +25,17 @@
    9、启动底盘ros2 launch yahboomcar_bringup bringup.launch.py
    依次对五太小车进行该操作即可
 在中控电脑上：
+
 2、先运行aruco码检测节点ros2 run aruco_detect aruco_detect_many_standard，
 该节点会持续将各小车位姿发送至对应话题
+
 3、再运行小车运动控制节点ros2 run simple_controller five_car_cbf_standard，
 小车运动控制节点开始等待手势识别节点给出手势预测信息
+
 4、运行手势识别节点ros2 run gesture_detect lstmmodelrealtime_standard，
 按‘s’，开始做手势，触发预测后该节点会将预测落点、触发预测点发送到指定话题，
 小车运动控制节点接收到该信息后会分析出目标小车以及所有车的目标位置，之后开始运动
+
 5、所有车到达目标位置后运动结束，如需继续实验，需要“crtl-c”结束小车运动控制节点进程，
 再重新启动ros2 run simple_controller five_car_cbf_standard，之后在手势识别节点
 按‘s’后即可重新做手势进行实验
